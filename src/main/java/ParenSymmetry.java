@@ -7,8 +7,8 @@ public class ParenSymmetry {
 
     private Boolean isBalanced(String s) {         // implement this method
         int balance = 0;
-        char[] chars = s.toCharArray();
-        for (char currentChar : chars ) {
+        char[] charsInArray = s.toCharArray();
+        for (char currentChar : charsInArray ) {
             if (currentChar == '(') {
                 balance++;
             } else if ( currentChar == ')') {
