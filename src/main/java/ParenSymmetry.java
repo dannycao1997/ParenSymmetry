@@ -1,21 +1,53 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class ParenSymmetry {
 
 
-    private Boolean isBalanced(String s) {
-        // implement this method
-        return null;
+    private Boolean isBalanced(String s) {         // implement this method
+        int balance = 0;
+        char[] chars = s.toCharArray();
+        for (char currentChar : chars ) {
+            if (currentChar == '(') {
+                balance++;
+            } else if ( currentChar == ')') {
+                balance--;
+            }
+        }
+        return balance == 0;
     }
 
     private void checkFile(String filename) {
-        // open file named filename
-
-        // for each line in the file
-            // read the line
-            // print whether or not the line's parenthesis are balanced
-
-        // CLOSE the file
+        File file = new File(filename);
+        Scanner scan = new Scanner("");
+        int lineNumber = -1;
+        try {
+            scan = new Scanner(file);
+        } catch (FileNotFoundException fileNotFoundException) {
+            System.out.println("Error: file not found!");
+                    System.exit(1);
+        }
+        while(scan.hasNextLine()) {
+            ParenSymmetry ps = new ParenSymmetry();
+            String next = scan.nextLine();
+            lineNumber++;
+            boolean isBal = ps.isBalanced(next);
+            if(isBal) {     // print whether or not the line's parenthesis are balanced
+                System.out.println("Line " + lineNumber + "is balanced!");
+            } else {
+                System.out.println("Line " + lineNumber + "is not balanced!");
+            }
+        }
+        scan.close(); // CLOSE the file
     }
+    // open file named filename
+
+    // for each line in the file
+    // read the line
+    // print whether or not the line's parenthesis are balanced
+
+    // CLOSE the file
 
     public static void main(String[] args) {
         ParenSymmetry ps = new ParenSymmetry();
