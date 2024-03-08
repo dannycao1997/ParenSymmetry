@@ -19,10 +19,10 @@ public class ParenSymmetry {
     }
 
     private void checkFile(String filename) {
-        File file = new File(filename);
+        File file = new File(filename);     // open file named filename
         Scanner scan = new Scanner("");
-        int lineNumber = -1;
-        try {
+        int lineNumber = -1;     // for each line in the file
+        try {     // read the line
             scan = new Scanner(file);
         } catch (FileNotFoundException fileNotFoundException) {
             System.out.println("Error: file not found!");
