@@ -5,49 +5,43 @@ import java.util.Scanner;
 public class ParenSymmetry {
 
 
-    private Boolean isBalanced(String s) {         // implement this method
-        int balance = 0;
-        char[] charsInArray = s.toCharArray();
-        for (char currentChar : charsInArray ) {
-            if (currentChar == '(') {
-                balance++;
-            } else if ( currentChar == ')') {
-                balance--;
+    private Boolean isBalanced(String s) {
+        // implement this method
+        int openParenthesis = 0;
+        int closeParenthesis = 0;
+
+        for(int i = 0; i < s.length(); i++){
+            if ( s.charAt(i) == '(' ) {
+                openParenthesis++;
+            }
+            if ( s.charAt(i) == ')' ) {
+                closeParenthesis++;
             }
         }
-        return balance == 0;
+        if(openParenthesis == closeParenthesis) {
+            return true;
+        }
+        else {
+            return false;
+        }
+
     }
 
-    private void checkFile(String filename) {
-        File file = new File(filename);     // open file named filename
-        Scanner scan = new Scanner("");
-        int lineNumber = -1;     // for each line in the file
-        try {     // read the line
-            scan = new Scanner(file);
-        } catch (FileNotFoundException fileNotFoundException) {
-            System.out.println("Error: file not found!");
-                    System.exit(1);
+    private void checkFile(String filename) throws FileNotFoundException {
+        // open file named filename
+        // for each line in the file
+        // read the line
+        // print whether or not the line's parenthesis are balanced
+        // CLOSE the file
+        File fileTest = new File("TestStrings0.txt");
+        Scanner scanner = new Scanner(filename);
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            System.out.println(line + " : " + isBalanced(line));
         }
-        while(scan.hasNextLine()) {
-            ParenSymmetry ps = new ParenSymmetry();
-            String next = scan.nextLine();
-            lineNumber++;
-            boolean isBal = ps.isBalanced(next);
-            if(isBal) {     // print whether or not the line's parenthesis are balanced
-                System.out.println("Line " + lineNumber + "is balanced!");
-            } else {
-                System.out.println("Line " + lineNumber + "is not balanced!");
-            }
-        }
-        scan.close(); // CLOSE the file
+        scanner.close();
+
     }
-    // open file named filename
-
-    // for each line in the file
-    // read the line
-    // print whether or not the line's parenthesis are balanced
-
-    // CLOSE the file
 
     public static void main(String[] args) {
         ParenSymmetry ps = new ParenSymmetry();
